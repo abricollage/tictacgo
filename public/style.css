@@ -1,0 +1,149 @@
+/*css para que todo se vea muy ciberpunk aesthetic 10/10 no genérico, no bórax n no glu*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    
+}
+
+body {
+    background-color: #141423; /* Fondo oscuro estilo arcade moderno */
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+/* --- ENCABEZADO --- */
+header {
+    text-align: center;
+    padding: 40px 20px;
+    width: 100%;
+    background: radial-gradient(circle at top, #23233a, #141423);
+    border-bottom: 4px solid #2a2a4a;
+    margin-bottom: 40px;
+}
+
+.logo {
+    font-family: 'Fredoka One', cursive;
+    font-size: 3.5rem;
+    color: #ffeb3b;
+    text-shadow: 0px 6px 0px #f57f17, 0 0 30px rgba(255, 235, 59, 0.3);
+    letter-spacing: 2px;
+}
+
+header p {
+    color: #a0a0b5;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+/* --- CUADRÍCULA DE JUEGOS --- */
+.games-grid {
+    display: grid;
+    /* Esto hace que las tarjetas se adapten a la pantalla */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 30px;
+    width: 90%;
+    max-width: 1100px;
+    padding-bottom: 50px;
+}
+
+/* --- TARJETAS DE JUEGO --- */
+.game-card {
+    background: var(--bg, #333);
+    border-radius: 25px;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1; /* Para qye estén cuadradas cuadaditas */
+    position: relative;
+    overflow: hidden;
+    /* Efecto 3D con sombras */
+    box-shadow: 0 10px 0 rgba(0,0,0,0.3), 0 15px 25px rgba(0,0,0,0.5);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+}
+
+/* Elementos internos de la tarjeta */
+.game-card .icon {
+    font-size: 5rem;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.4));
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+.game-card h3 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.4rem;
+    text-shadow: 0 3px 6px rgba(0,0,0,0.5);
+    z-index: 1;
+    text-align: center;
+    padding: 0 10px;
+}
+
+/* --- EFECTOS HOVER (Igual que el volumen pero en css) --- */
+.game-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 15px 0 rgba(0,0,0,0.2), 0 25px 30px rgba(0,0,0,0.6);
+}
+
+.game-card:hover .icon {
+    transform: scale(1.1);
+}
+
+/* Capa oscura con el texto "JUGAR" que aparece al hacer hover */
+.game-card::before {
+    content: '▶ JUGAR';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /*ragebait*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+    backdrop-filter: blur(2px);
+}
+
+.game-card:hover::before {
+    opacity: 1;
+}
+
+/* --- bloquea card porque el saldo de la facecard es isuficiente :(((--- */
+.game-card.locked {
+    cursor: not-allowed;
+    filter: grayscale(0.8);
+}
+.game-card.locked:hover {
+    transform: none;
+    box-shadow: 0 10px 0 rgba(0,0,0,0.3), 0 15px 25px rgba(0,0,0,0.5);
+}
+.game-card.locked::before {
+    content: 'PRONTO';
+    color: #aaa;
+}
+
+/* --- PIE DE PÁGINA --- */
+footer {
+    margin-top: auto;
+    padding: 20px;
+    color: #666;
+    font-size: 0.9rem;
+}

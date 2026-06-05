@@ -1,0 +1,184 @@
+body {
+    background-color: #121212;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    /* Fondo oscuro con un tinte naranja ahumado */
+    background-image: linear-gradient(rgba(30, 10, 0, 0.75), rgba(45, 15, 0, 0.85)), url('/images/fondo-memorama.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.container {
+    text-align: center;
+    /* Panel translúcido oscuro con matiz anaranjado */
+    background: rgba(35, 15, 5, 0.85) !important; 
+    padding: 25px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    /* Borde naranja neón vibrante */
+    border: 4px solid #ff9900; 
+    box-shadow: 0 0 20px rgba(255, 153, 0, 0.6), 0 8px 24px rgba(0,0,0,0.8);
+}
+
+h1 { 
+    color: #ff9900; 
+    margin-top: 0; 
+    text-shadow: 0 0 10px rgba(255, 153, 0, 0.8), 0 0 20px rgba(255, 153, 0, 0.6);
+}
+
+.cabecera-juego { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    border-bottom: 2px dashed rgba(255, 153, 0, 0.4); 
+    padding-bottom: 10px; 
+    margin-bottom: 20px;
+}
+
+.cabecera-juego h2 { 
+    margin: 0; 
+    color: #ffe6cc; /* Naranja muy claro para lectura */
+    text-shadow: 0 0 5px rgba(255, 153, 0, 0.5);
+}
+
+/* El Tablero Inteligente */
+.tablero {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+/* Efectos 3D de las Cartas */
+.carta {
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+.carta-inner {
+    width: 100%;height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+    position: relative;
+}
+
+.carta.volteada .carta-inner, 
+.carta.resuelta .carta-inner {
+    transform: rotateY(180deg);
+}
+
+.cara-frontal, .cara-trasera {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 35px;
+    transition: box-shadow 0.3s ease;
+}
+
+/* La parte de atrás de la carta (lo que ves antes de voltear) */
+.cara-frontal {
+    background-color: #1a0a00;
+    border: 2px solid #ff9900;
+    box-shadow: inset 0 0 15px rgba(255, 153, 0, 0.2);
+    /* Un ligero brillo radial al centro */
+    background-image: radial-gradient(circle, rgba(255,153,0,0.1) 0%, transparent 70%);
+}
+
+.cara-frontal:hover {
+    box-shadow: 0 0 15px rgba(255, 153, 0, 0.6), inset 0 0 10px rgba(255, 153, 0, 0.4);
+}
+
+/* La cara de la carta (donde está la imagen/emoji) */
+.cara-trasera {
+    background-color: #0d0500;
+    border: 2px solid #ffcc80;
+    transform: rotateY(180deg);
+    box-shadow: 0 0 15px rgba(255, 153, 0, 0.5);
+}
+
+/* Selector de Niveles */
+.grid-niveles {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.grid-niveles button {
+    padding: 10px 0;
+    font-weight: bold;
+}
+
+/* Botones bloqueados (niveles no alcanzados) */
+.grid-niveles button:disabled {
+    background-color: #331a00;
+    color: #804d00;
+    cursor: not-allowed;
+    border: 1px solid #4d2600;
+    box-shadow: none;
+}
+
+/* --- BOTONES NEÓN --- */
+button, .btn-volver, .btn-niveles {
+    padding: 10px 20px;
+    background-color: #ff9900;
+    color: #1a0a00; /* Texto oscuro para contrastar con el fondo brillante */
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 10px rgba(255, 153, 0, 0.4);
+}
+
+button:hover:not(:disabled), .btn-volver:hover, .btn-niveles:hover { 
+    background-color: #ffb347;
+    transform: scale(1.05); 
+    filter: brightness(1.1); 
+    box-shadow: 0 0 20px rgba(255, 153, 0, 0.8);
+}
+
+button:active:not(:disabled), .btn-volver:active { 
+    transform: scale(0.95); 
+}
+
+/* Botones secundarios con colores ajustados */
+.btn-niveles { 
+    background-color: #cc7a00; 
+    font-size: 13px; 
+    color: white;
+}
+
+.btn-volver { 
+    background-color: #4d2600; 
+    color: #ffe6cc;
+    margin-top: 15px; 
+}
+
+#btnSiguiente { 
+    background-color: #ff6c00; 
+    font-size: 18px; 
+    margin-top: 15px;
+    color: white;
+}

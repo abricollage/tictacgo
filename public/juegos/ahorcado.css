@@ -1,0 +1,259 @@
+body {
+    background-color: #121212;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    /* Fondo oscuro con un misterioso tinte morado */
+    background-image: linear-gradient(rgba(20, 0, 35, 0.75), rgba(30, 0, 45, 0.85)), url('../images/fondo-ahorcado.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.container {
+    text-align: center;
+    /* Panel translúcido oscuro con matiz púrpura */
+    background: rgba(20, 10, 35, 0.85) !important; 
+    padding: 25px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    /* Borde morado neón vibrante */
+    border: 4px solid #b026ff; 
+    box-shadow: 0 0 20px rgba(176, 38, 255, 0.6), 0 8px 24px rgba(0,0,0,0.8);
+}
+
+h1 { 
+    color: #b026ff; 
+    margin-top: 0; 
+    text-shadow: 0 0 10px rgba(176, 38, 255, 0.8), 0 0 20px rgba(176, 38, 255, 0.6);
+}
+
+.cabecera-juego { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    flex-wrap: wrap; 
+    gap: 10px;
+    border-bottom: 2px dashed rgba(176, 38, 255, 0.4); 
+    padding-bottom: 10px; 
+    margin-bottom: 20px;
+}
+
+.cabecera-juego h2 { 
+    margin: 0; 
+    color: #f3e5f5; /* Morado muy claro para los textos secundarios */
+    text-shadow: 0 0 5px rgba(176, 38, 255, 0.5);
+}
+
+/* --- ÁREA DE DIBUJO (CANVAS) --- */
+canvas, #canvasAhorcado {
+    background-color: #0a0014; /* Fondo casi negro/morado */
+    border: 3px solid #9d4edd;
+    border-radius: 10px;
+    margin: 0 auto 20px auto;
+    display: block;
+    box-shadow: inset 0 0 20px rgba(176, 38, 255, 0.2), 0 0 15px rgba(176, 38, 255, 0.3);
+}
+
+/* --- LA PALABRA OCULTA --- */
+#palabra, .palabra-oculta { 
+    font-family: 'Courier New', Courier, monospace; 
+    font-size: 2.5rem;
+    letter-spacing: 12px;
+    color: #e0b3ff; /* Púrpura brillante */
+    text-shadow: 0 0 10px rgba(176, 38, 255, 0.6);
+    margin: 20px 0;
+    min-height: 50px;
+    font-weight: bold;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.bloque-palabra {
+    display: flex;
+    flex-wrap: nowrap; 
+    gap: 5px; 
+}
+
+.letra-ahorcado {
+    display: inline-block;
+    min-width: 25px; 
+    text-align: center;
+    border-bottom: 3px solid #b026ff;
+}
+
+/* --- TECLADO VIRTUAL --- */
+#teclado, .teclado { 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.tecla, .teclado button {
+    background-color: #1a0033;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border: 2px solid #7a1fa6;
+    border-radius: 8px;
+    width: 40px;
+    height: 45px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #4d0066; 
+    transition: all 0.1s ease;
+}
+
+.tecla:active, .teclado button:active {
+    transform: translateY(4px);
+    box-shadow: 0 0px 0 #4d0066; 
+}
+
+/* Teclas al jugar */
+.tecla.correcta, .teclado button.correcta {
+    background-color: #00e676; /* Mantenemos verde para acierto */
+    border-color: #00e676;
+    box-shadow: 0 4px 0 #00994d;
+    color: #000;
+    pointer-events: none; 
+    transform: translateY(2px); 
+}
+
+.tecla.incorrecta, .teclado button.incorrecta {
+    background-color: #ff0055; /* Rojo neón para error */
+    border-color: #ff0055;
+    box-shadow: 0 4px 0 #990033;
+    color: white;
+    opacity: 0.6;
+    pointer-events: none;
+    transform: translateY(4px); 
+}
+
+/* --- BOTONES PRINCIPALES Y NIVELES --- */
+.grid-niveles {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+button, .btn-volver, .btn-niveles {
+    padding: 10px 20px;
+    background-color: #b026ff;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 10px rgba(176, 38, 255, 0.4);
+}
+
+button:hover:not(:disabled), .btn-volver:hover, .btn-niveles:hover {
+    background-color: #c44dff;
+    transform: scale(1.05);
+    filter: brightness(1.1);
+    box-shadow: 0 0 20px rgba(176, 38, 255, 0.8);
+}
+
+button:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.grid-niveles button:disabled { 
+    background-color: #2a004d; 
+    color: #663399; 
+    cursor: not-allowed; 
+    box-shadow: none;
+}
+
+.btn-niveles { background-color: #8a2be2; font-size: 13px; }
+.btn-volver { background-color: #4a0080; margin-top: 15px; }
+
+#btnSiguiente, #btnReintentar { 
+    background-color: #d500f9; 
+    font-size: 16px; 
+    margin-top: 10px;
+}
+
+/* --- BOTÓN DE PISTA (Foquitos neón amarillo para que destaque) --- */
+#btnPista {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #ffeb3b; 
+    color: #1a0033;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #bcab11, 0 0 15px rgba(255, 235, 59, 0.5); 
+}
+
+#btnPista:hover {
+    background-color: #fff176;
+}
+
+#btnPista:active {
+    transform: translateY(4px);
+    box-shadow: 0 0px 0 #bcab11;
+}
+
+/* --- MODAL DE PISTAS --- */
+.modal-pista {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 0, 20, 0.85);
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-pista-contenido {
+    background: #1a0033;
+    border: 3px solid #b026ff;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 400px;
+    width: 85%;
+    box-shadow: 0 0 30px rgba(176, 38, 255, 0.6);
+    color: white;
+}
+
+.modal-pista-contenido h3 {
+    color: #b026ff;
+    margin-top: 0;
+    text-shadow: 0 0 10px rgba(176, 38, 255, 0.5);
+}
+
+/* --- EFECTO TEMBLOR --- */
+@keyframes temblor {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    50% { transform: translateX(8px); }
+    75% { transform: translateX(-8px); }
+    100% { transform: translateX(0); }
+}
+
+.shake {
+    animation: temblor 0.3s ease-in-out;
+}
