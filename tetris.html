@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris Arcade</title>
+    <link rel="stylesheet" href="tetris.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Tetris Arcade</h1>
+        
+        <div class="marcador">
+            <p>Puntos: <span id="marcador-puntos">0</span></p>
+            <p>Líneas: <span id="marcador-lineas">0</span></p>
+            <p>Récord: <span id="marcador-record">0</span></p>
+        </div>
+        
+        <canvas id="tetris-canvas" width="300" height="600"></canvas>
+        <div id="controles-tetris">
+    <div class="bloque-direcciones">
+        <button id="t-left" class="btn-tetris">⬅️</button>
+        <button id="t-down" class="btn-tetris">⬇️</button>
+        <button id="t-right" class="btn-tetris">➡️</button>
+    </div>
+    <div class="bloque-accion">
+        <button id="t-rotate" class="btn-tetris rotar">🔄 Gira</button>
+    </div>
+</div>
+
+        <br>
+        <button onclick="iniciarJuego()">Reiniciar Partida</button>
+        <br>
+ <a href="../menu.html" class="btn-volver">← Volver al Menú</a>
+    <script src="tetris.js"></script>
+</body>
+</html>

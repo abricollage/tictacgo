@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahorcado - TikTakk</title>
+    <link rel="stylesheet" href="ahorcado.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h1>El Ahorcado</h1>
+      
+       <div id="pantallaJuego">
+            <div class="cabecera-juego">
+                <h2 id="textoNivel">Nivel 1</h2>
+                
+                <button id="btnPista" onclick="revelarLetra()" style="margin-right: 10px;">💡</button>
+                <button onclick="abrirSelectorNiveles()" class="btn-niveles">📋 Ver Niveles</button>
+            </div>
+            
+            <canvas id="canvasAhorcado" width="200" height="250"></canvas>
+            
+            <div id="palabraOculta" class="palabra-oculta">_ _ _</div>
+            
+            <p id="mensajeEstado"></p>
+            
+            <button id="btnSiguiente" onclick="cargarSiguienteNivel()" style="display: none;">Siguiente Nivel ➡️</button>
+            <button id="btnReintentar" onclick="reintentarNivel()" style="display: none;">🔄 Reintentar Nivel</button>
+
+            <div id="teclado" class="teclado"></div>
+        </div>
+
+        <div id="pantallaNiveles" style="display: none;">
+            <h2>Selecciona un Nivel</h2>
+            <div id="cuadriculaNiveles" class="grid-niveles"></div>
+            <button onclick="cerrarSelectorNiveles()" class="btn-volver">Volver al Juego</button>
+        </div>
+
+        <br>
+ <a href="../menu.html" class="btn-volver">← Volver al Menú</a>    </div>
+
+    <script src="ahorcado.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Block Blast Arcade</title>
+    <link rel="stylesheet" href="blockblast.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Block Blast</h1>
+        
+        <div class="marcador">
+            <p>Puntos: <span id="marcador-puntos">0</span></p>
+        </div>
+        
+        <canvas id="tablero" width="320" height="320"></canvas>
+        
+        <div class="contenedor-piezas">
+            <canvas id="pieza0" class="canvas-pieza" width="100" height="100" onclick="seleccionarPieza(0)"></canvas>
+            <canvas id="pieza1" class="canvas-pieza" width="100" height="100" onclick="seleccionarPieza(1)"></canvas>
+            <canvas id="pieza2" class="canvas-pieza" width="100" height="100" onclick="seleccionarPieza(2)"></canvas>
+        </div>
+        
+        <br>
+        <button onclick="reiniciarJuego()">Reiniciar Partida</button>
+        <br>
+ <a href="../menu.html" class="btn-volver">← Volver al Menú</a>    </div>
+
+    <script src="blockblast.js"></script>
+</body>
+</html>

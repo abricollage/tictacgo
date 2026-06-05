@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Go</title>
+    <link rel="stylesheet" href="tictactoe.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Tic Tac Go</h1>
+        
+        <div id="tablero" class="tablero">
+        <div id="lineaGanadora" class="linea-ganadora"></div>
+        </div>
+        
+        <p id="estado"></p>
+        
+        <button onclick="reiniciar()">Reiniciar</button>
+        
+        <h2>Historial</h2>
+        <ul id="historial" class="historial-lista" ></ul>
+       
+        <button onclick="borrarHistorial()">Eliminar historial</button>
+        <br>
+        <br>
+        <a href="../menu.html" class="btn-volver">← Volver al Menú</a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
